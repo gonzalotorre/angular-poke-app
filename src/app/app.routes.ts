@@ -6,4 +6,8 @@ export const routes: Routes = [
         path: '',
         component: HomeComponent,
     },
+    {
+        path: 'management',
+        component: HomeComponent,
+    },
 ];
