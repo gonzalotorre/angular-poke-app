@@ -1,17 +1,22 @@
-<!-- <mat-toolbar color="primary" class="example-toolbar">
-	<button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
-	<h1 class="example-app-name">Poke App</h1>
-</mat-toolbar> -->
 <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Poke App</span>
-    <span class="example-spacer"></span>
-  </mat-toolbar>
-<mat-drawer-container class="container">
-    <mat-drawer mode="side" opened>APP MENU</mat-drawer>
-    <mat-drawer-content>
-        <app-home></app-home>
-    </mat-drawer-content>
-</mat-drawer-container>
+  <button mat-icon-button class="example-icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Poke App</span>
+  <span class="spacer"></span>
+</mat-toolbar>
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <mat-list>
+      <mat-list-item><a href="/home">Home</a></mat-list-item>
+      <mat-list-item><a href="/home">Locations</a></mat-list-item>
+      <mat-list-item><a href="/home">Pokedex</a></mat-list-item>
+      <mat-list-item><a href="/home">About</a></mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+
+  <div>
+    <app-home></app-home>
+  </div>
+
+</mat-sidenav-container>
