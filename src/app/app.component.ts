@@ -8,7 +8,7 @@ import { MenuComponent } from './pages/menu/menu.component';
   standalone: true,
   imports: [CommonModule, RouterOutlet, MenuComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'poke-app';

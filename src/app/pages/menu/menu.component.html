@@ -8,15 +8,25 @@
 <mat-sidenav-container autosize>
   <mat-sidenav #sidenav mode="side" opened="true">
     <mat-list>
-      <mat-list-item><a href="/home">Home</a></mat-list-item>
-      <mat-list-item><a href="/home">Locations</a></mat-list-item>
-      <mat-list-item><a href="/home">Pokedex</a></mat-list-item>
-      <mat-list-item><a href="/home">About</a></mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>home</mat-icon>
+        <a routerLink="/management" routerLinkActive="active-page" ariaCurrentWhenActive="page">Home</a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>location_on</mat-icon>
+        <a routerLink="/locations" routerLinkActive="active-page" ariaCurrentWhenActive="page">Location</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a href="/home">Pokedex</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a href="/home">About</a>
+      </mat-list-item>
     </mat-list>
   </mat-sidenav>
 
   <div>
-    <app-home></app-home>
+    <router-outlet></router-outlet>
   </div>
 
 </mat-sidenav-container>
