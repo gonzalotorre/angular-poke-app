@@ -33,6 +33,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 })
 export class PokemonListingComponent implements OnInit, AfterViewInit {
   @Input() pokedexList: Pokemon[] = [];
+  @Input() isLoading = true;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

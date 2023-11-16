@@ -1,0 +1,16 @@
+.list-icon {
+  margin: 0;
+  margin-right: 5px !important;
+}
+
+.list-title {
+  margin-top: 3px !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

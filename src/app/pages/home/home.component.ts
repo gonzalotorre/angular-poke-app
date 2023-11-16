@@ -4,16 +4,38 @@ import { PokemonListingComponent } from '../../components/pokemon-listing/pokemo
 import { PokemonFilterComponent } from '../../components/pokemon-filter/pokemon-filter.component';
 import { Pokemon } from '../../models/pokemon';
 import { PokemonsService } from '../../services/pokemon.service';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, PokemonFilterComponent, PokemonListingComponent],
+  imports: [
+    CommonModule,
+    PokemonFilterComponent,
+    PokemonListingComponent,
+    CommonModule,
+    HomeComponent,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
   pokedexList: Pokemon[] = [];
+
+  isLoading: boolean = true;
 
   constructor(private pokemonsService: PokemonsService) {
     this.getPokemons();
@@ -25,6 +47,10 @@ export class HomeComponent {
         pokemons.results.forEach((pokemon) => {
           this.findPokemon(pokemon.url);
         });
+        this.isLoading = true;
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }
