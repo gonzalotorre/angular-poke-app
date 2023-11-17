@@ -29,7 +29,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatCardModule,
   ],
   templateUrl: './pokemon-listing.component.html',
-  styleUrl: './pokemon-listing.component.css',
+  styleUrl: './pokemon-listing.component.scss',
 })
 export class PokemonListingComponent implements OnInit, AfterViewInit {
   @Input() pokedexList: Pokemon[] = [];

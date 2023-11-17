@@ -24,7 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
   ],
   templateUrl: './pokemon-filter.component.html',
-  styleUrl: './pokemon-filter.component.css',
+  styleUrl: './pokemon-filter.component.scss',
 })
 export class PokemonFilterComponent implements OnInit {
   filterForm: FormGroup;
