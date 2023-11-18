@@ -1,0 +1,22 @@
+#container {
+  top: 64px !important;
+ }
+ 
+ @media(max-width: 599px) {
+   #container {
+     top: 56px !important;
+   }
+ }
+ 
+.list-icon {
+  margin: 0;
+  margin-right: 5px !important;
+}
+
+.list-title {
+  margin-top: 3px !important;
+}
+
+a {
+  text-decoration: none;
+}
