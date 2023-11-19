@@ -1,40 +1,97 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, AfterViewInit, Input, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  EventEmitter,
+  SimpleChanges,
+  Component,
+  Input,
+  OnInit,
+  Output,
+  OnChanges,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
+import { Router } from '@angular/router';
 import { Pokemon } from '../../models/pokemon';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-pokemon-listing',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatSortModule, MatPaginatorModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatCardModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+  ],
   templateUrl: './pokemon-listing.component.html',
-  styleUrl: './pokemon-listing.component.css'
+  styleUrl: './pokemon-listing.component.scss',
 })
-export class PokemonListingComponent implements OnInit, AfterViewInit {
-  @Input() pokedexList: Pokemon[] = []
+export class PokemonListingComponent
+  implements OnInit, AfterViewInit, OnChanges
+{
+  @Output() pokemonsLength = new EventEmitter<number>();
 
-  @ViewChild(MatSort) sort: MatSort
-  @ViewChild(MatPaginator) paginator: MatPaginator
+  @Input() pokedexList: Pokemon[];
+  @Input() isLoading = true;
 
-  displayedColumns: string[] = ['order', 'img', 'name', 'weight', 'height', 'actions'];
-  
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  displayedColumns: string[] = [
+    'order',
+    'img',
+    'name',
+    'types',
+    'abilities',
+    'weight',
+    'height',
+    'actions',
+  ];
+
   public dataSource = new MatTableDataSource<Pokemon>();
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.dataSource.data = this.pokedexList
+    this.dataSource.data = this.pokedexList;
   }
-  
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort
-    this.dataSource.paginator = this.paginator
-}
 
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.paginator.page.subscribe((res) => {
+      if (this.isLastPage(res)) {
+        this.pokemonsLength.emit(res.length);
+      }
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['pokedexList'].currentValue) {
+      const newList = changes['pokedexList'].currentValue;
+      this.dataSource.data = newList;
+    }
+  }
+
+  isLastPage(event: any): boolean {
+    const totalPages = Math.ceil(event.length / event.pageSize);
+    // Verifica si la página actual es la última página
+    return event.pageIndex === totalPages - 1;
+  }
+
+  public goToDetail(id: number): void {
+    this.router.navigateByUrl(`detail/${id}`);
+  }
 }

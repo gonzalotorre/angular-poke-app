@@ -1,4 +1,4 @@
-<div class="container">
+<div class="filter-container">
     <mat-card>
         <mat-card-header>
             <h3>Buscar en la pokedex</h3>
@@ -10,19 +10,22 @@
                         <mat-label>Select</mat-label>
                         <mat-select>
                             @for (type of pokemonTypesList; track type.name) {
-                                <mat-option [value]="type.url">
-                                    {{type.name}}
-                                </mat-option>
-                              } @empty {
-                                <mat-option [value]="null">
-                                    No se han encontrado resultados
-                                </mat-option>
-                              }
+                            <mat-option [value]="type.url">
+                                {{ type.name }}
+                            </mat-option>
+                            } @empty {
+                            <mat-option [value]="null">
+                                No se han encontrado resultados
+                            </mat-option>
+                            }
                         </mat-select>
                     </mat-form-field>
-            
-                    <button type="button" mat-raised-button color="primary">Primary</button>
-                  </form>
+
+                    <button mat-stroked-button color="primary" style="justify-content: center">
+                        <mat-icon aria-hidden="false" aria-label="Example visibility icon"
+                            fontIcon="visibility"></mat-icon>
+                    </button>
+                </form>
             </div>
         </mat-card-content>
     </mat-card>
