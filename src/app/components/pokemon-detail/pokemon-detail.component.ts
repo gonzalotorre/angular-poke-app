@@ -31,7 +31,6 @@ export class PokemonDetailComponent implements OnInit {
   private findPokemon() {
     this.pokemonService.findPokemonById(this.pokemonId).subscribe({
       next: (pokemon) => {
-        console.log(pokemon);
         this.pokemon = pokemon;
       },
     });

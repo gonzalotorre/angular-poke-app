@@ -18,26 +18,40 @@ export class HomeComponent {
 
   isLoading: boolean = true;
 
+  private readonly pokemonListMaxSize = 1292;
+
+  private readonly firstPokemons = 151;
+
   constructor(private pokemonsService: PokemonsService) {
-    this.getPokemons();
+    this.getPokemons(0, this.firstPokemons);
   }
 
-  private getPokemons(): void {
-    this.pokemonsService.findAllPokemons(undefined, 151).subscribe({
-      next: (pokemons) => {
-        const pokemonObservables = pokemons.results.map((pokemon) => {
-          return this.pokemonsService.findPokemonByUrl(pokemon.url);
-        });
+  public sendNewRequest(length: number): void {
+    this.getPokemons(length, length + 50);
+  }
 
-        forkJoin(pokemonObservables).subscribe((pokemonArray) => {
-          pokemonArray.forEach((pokemon) => {
-            this.processPokemon(pokemon);
+  private getPokemons(offset: number, length: number): void {
+    if (length <= this.pokemonListMaxSize) {
+      this.pokemonsService.findAllPokemons(offset, length).subscribe({
+        next: (pokemons) => {
+          const pokemonObservables = pokemons.results.map((pokemon) => {
+            return this.pokemonsService.findPokemonByUrl(pokemon.url);
           });
 
-          this.isLoading = false;
-        });
-      },
-    });
+          forkJoin(pokemonObservables).subscribe((pokemonArray) => {
+            const updatedPokedexList = [...this.pokedexList];
+
+            pokemonArray.forEach((pokemon) => {
+              this.processPokemon(pokemon);
+              updatedPokedexList.push(pokemon);
+            });
+
+            this.pokedexList = updatedPokedexList;
+            this.isLoading = false;
+          });
+        },
+      });
+    }
   }
 
   private processPokemon(pokemon: Pokemon): void {
