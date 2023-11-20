@@ -21,7 +21,11 @@ export class PokemonsService {
     );
   }
 
-  public findPokemon(pokemonUrl: string): Observable<Pokemon> {
+  public findPokemonByUrl(pokemonUrl: string): Observable<Pokemon> {
     return this.http.get<Pokemon>(pokemonUrl);
+  }
+
+  public findPokemonById(id: number): Observable<Pokemon> {
+    return this.http.get<Pokemon>(`${this.URL_BASE}${id}`);
   }
 }

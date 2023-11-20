@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PokemonListingComponent } from '../../components/pokemon-listing/pokemon-listing.component';
+import { Component } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { PokemonFilterComponent } from '../../components/pokemon-filter/pokemon-filter.component';
+import { PokemonListingComponent } from '../../components/pokemon-listing/pokemon-listing.component';
 import { Pokemon } from '../../models/pokemon';
 import { PokemonsService } from '../../services/pokemon.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -37,38 +38,54 @@ export class HomeComponent {
 
   isLoading: boolean = true;
 
+  private readonly pokemonListMaxSize = 1292;
+
+  private readonly firstPokemons = 151;
+
   constructor(private pokemonsService: PokemonsService) {
-    this.getPokemons();
+    this.getPokemons(0, this.firstPokemons);
   }
 
-  private getPokemons(): void {
-    this.pokemonsService.findAllPokemons(undefined, 151).subscribe({
-      next: (pokemons) => {
-        pokemons.results.forEach((pokemon) => {
-          this.findPokemon(pokemon.url);
-        });
-        this.isLoading = true;
-      },
-      complete: () => {
-        this.isLoading = false;
-      },
-    });
+  public sendNewRequest(length: number): void {
+    this.getPokemons(length, length + 50);
   }
 
-  private findPokemon(pokrmonUrl: string): void {
-    this.pokemonsService.findPokemon(pokrmonUrl).subscribe({
-      next: (pokemon) => {
-        var typeNames = pokemon.types.map((type) => {
-          return this.capitalizeFirstLetter(type.type.name);
-        });
-        pokemon.typesSecuence = typeNames.join(' | ');
-        var abilities = pokemon.abilities.map((ability) => {
-          return this.capitalizeFirstLetter(ability.ability.name);
-        });
-        pokemon.abilitiesSecuence = abilities.join(' | ');
-        this.pokedexList.push(pokemon);
-      },
+  private getPokemons(offset: number, length: number): void {
+    if (length <= this.pokemonListMaxSize) {
+      this.pokemonsService.findAllPokemons(offset, length).subscribe({
+        next: (pokemons) => {
+          const pokemonObservables = pokemons.results.map((pokemon) => {
+            return this.pokemonsService.findPokemonByUrl(pokemon.url);
+          });
+
+          forkJoin(pokemonObservables).subscribe((pokemonArray) => {
+            const updatedPokedexList = [...this.pokedexList];
+
+            pokemonArray.forEach((pokemon) => {
+              this.processPokemon(pokemon);
+              updatedPokedexList.push(pokemon);
+            });
+
+            this.pokedexList = updatedPokedexList;
+            this.isLoading = false;
+          });
+        },
+      });
+    }
+  }
+
+  private processPokemon(pokemon: Pokemon): void {
+    var typeNames = pokemon.types.map((type) => {
+      return this.capitalizeFirstLetter(type.type.name);
     });
+    pokemon.typesSecuence = typeNames.join(' | ');
+
+    var abilities = pokemon.abilities.map((ability) => {
+      return this.capitalizeFirstLetter(ability.ability.name);
+    });
+    pokemon.abilitiesSecuence = abilities.join(' | ');
+
+    this.pokedexList.push(pokemon);
   }
 
   private capitalizeFirstLetter(text: string) {

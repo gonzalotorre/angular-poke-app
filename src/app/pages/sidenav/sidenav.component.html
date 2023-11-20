@@ -1,29 +1,29 @@
-<div class="sidenav-container">
-    <mat-toolbar color="primary">
-        <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span>Poke App</span>
-        <span class="spacer"></span>
-    </mat-toolbar>
-    <mat-drawer-container class="example-container">
-        <mat-drawer #drawer mode="side" opened>
-            <mat-list>
-                <mat-list-item>
-                    <mat-icon class="list-icon" matListItemIcon>home</mat-icon>
-                    <div class="list-title" matListItem><a routerLink="/management" routerLinkActive="active-page"
-                            ariaCurrentWhenActive="page">Home</a>
-                    </div>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-icon class="list-icon" matListItemIcon>location_on</mat-icon>
-                    <div class="list-title" matListItem><a routerLink="/locations" routerLinkActive="active-page"
-                            ariaCurrentWhenActive="page">Locations</a></div>
-                </mat-list-item>
-            </mat-list>
-        </mat-drawer>
-        <mat-drawer-content>
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Poke App</span>
+    <span class="spacer"></span>
+</mat-toolbar>
+<mat-sidenav-container id="container" fullscreen>
+    <mat-sidenav #drawer mode="side" opened>
+        <mat-list>
+            <mat-list-item>
+                <mat-icon class="list-icon" matListItemIcon>home</mat-icon>
+                <div class="list-title" matListItem><a routerLink="/management" routerLinkActive="active-page"
+                        ariaCurrentWhenActive="page">Home</a>
+                </div>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon class="list-icon" matListItemIcon>location_on</mat-icon>
+                <div class="list-title" matListItem><a routerLink="/locations" routerLinkActive="active-page"
+                        ariaCurrentWhenActive="page">Locations</a></div>
+            </mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="container">
             <router-outlet></router-outlet>
-        </mat-drawer-content>
-    </mat-drawer-container>
-</div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
