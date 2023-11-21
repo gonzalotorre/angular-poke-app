@@ -1,5 +1,3 @@
-import { types } from 'util';
-
 export interface Pokemon {
   url: string;
   id: number;
@@ -36,4 +34,22 @@ export interface PokemonAbilities {
 export interface Ability {
   name: string;
   url: Type;
+}
+
+export interface PokemonHabitat {
+  count: number;
+  next: string;
+  previous: string;
+  results: GenericResponse[];
+}
+
+export interface PokemonHabitatDetail {
+  id: number;
+  name: string;
+  pokemon_species: GenericResponse[];
+}
+
+export interface GenericResponse {
+  name: string;
+  url: string;
 }

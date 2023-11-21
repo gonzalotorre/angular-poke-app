@@ -1,0 +1,22 @@
+<h1 class="title">All pokemons by habitat</h1>
+
+@for (habitat of listHabitats; track habitat) {
+<mat-card class="habitat-card">
+    <mat-card-title>{{habitat.name | titlecase}}</mat-card-title>
+    <mat-card-content>
+        <mat-chip-set cdkDropList cdkDropListOrientation="horizontal">
+            @for (pokemon of habitat.pokemon_species; track pokemon) {
+            <mat-chip cdkDrag>{{pokemon.name | titlecase}}</mat-chip>
+            } @empty {
+            <span class="not-found">
+                No se han encontrado pokemons.
+            </span>
+            }
+        </mat-chip-set>
+    </mat-card-content>
+</mat-card>
+} @empty {
+<span class="title">
+    No se han encontrado resultados.
+</span>
+}
