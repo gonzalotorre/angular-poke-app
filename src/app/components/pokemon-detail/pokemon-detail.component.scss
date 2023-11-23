@@ -1,12 +1,8 @@
-.container {
-  background-color: red;
+mat-card {
+  margin: 20px;
 }
 
-.card {
-  margin: 17px;
-}
-
-:host {
-  display: block;
-  height: 100%;
+.avatar {
+  height: 140px !important;
+  width: 140px !important;
 }
