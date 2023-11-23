@@ -1,5 +1,6 @@
 {
   "routes": [
+    "/habitats",
     "/locations",
     "/management"
   ]

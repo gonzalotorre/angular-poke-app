@@ -5,11 +5,31 @@ import { PokemonFilterComponent } from '../../components/pokemon-filter/pokemon-
 import { PokemonListingComponent } from '../../components/pokemon-listing/pokemon-listing.component';
 import { Pokemon } from '../../models/pokemon';
 import { PokemonsService } from '../../services/pokemon.service';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, PokemonFilterComponent, PokemonListingComponent],
+  imports: [
+    CommonModule,
+    PokemonFilterComponent,
+    PokemonListingComponent,
+    CommonModule,
+    HomeComponent,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -31,6 +51,7 @@ export class HomeComponent {
   }
 
   private getPokemons(offset: number, length: number): void {
+    console.log('getting pokemons');
     if (length <= this.pokemonListMaxSize) {
       this.pokemonsService.findAllPokemons(offset, length).subscribe({
         next: (pokemons) => {
