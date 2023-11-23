@@ -51,7 +51,6 @@ export class HomeComponent {
   }
 
   private getPokemons(offset: number, length: number): void {
-    console.log('getting pokemons');
     if (length <= this.pokemonListMaxSize) {
       this.pokemonsService.findAllPokemons(offset, length).subscribe({
         next: (pokemons) => {

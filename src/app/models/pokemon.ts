@@ -13,6 +13,8 @@ export interface Pokemon {
   typesSecuence: string;
   abilities: PokemonAbilities[];
   abilitiesSecuence: string;
+  species: GenericResponse;
+  level_evolution: number;
 }
 
 export interface PokemonType {

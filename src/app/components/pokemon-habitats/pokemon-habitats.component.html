@@ -1,11 +1,11 @@
 <h1 class="title">All pokemons by habitat</h1>
 
-@for (habitat of listHabitats; track habitat) {
+@for (habitat of listHabitats; track $index) {
 <mat-card class="habitat-card">
     <mat-card-title>{{habitat.name | titlecase}}</mat-card-title>
     <mat-card-content>
         <mat-chip-set cdkDropList cdkDropListOrientation="horizontal">
-            @for (pokemon of habitat.pokemon_species; track pokemon) {
+            @for (pokemon of habitat.pokemon_species; track $index) {
             <mat-chip cdkDrag (click)="goToDetail(pokemon.url)">
                 <mat-chip-avatar>
                     <mat-icon>open_in_new</mat-icon>

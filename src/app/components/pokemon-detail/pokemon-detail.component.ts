@@ -1,47 +1,66 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { PokemonsService } from '../../services/pokemon.service';
-import { Pokemon } from '../../models/pokemon';
+import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ActivatedRoute } from '@angular/router';
+import { Pokemon } from '../../models/pokemon';
+import { PokemonSpeciesService } from '../../services/pokemon-species.service';
+import { PokemonsService } from '../../services/pokemon.service';
+import { PokemonEvolutionsComponent } from './pokemon-evolutions/pokemon-evolutions.component';
+import { PokemonSpecie } from '../../models/pokemon-specie';
 
 @Component({
   selector: 'app-pokemon-detail',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatTabsModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatTabsModule,
+    PokemonEvolutionsComponent,
+  ],
   templateUrl: './pokemon-detail.component.html',
   styleUrl: './pokemon-detail.component.scss',
 })
 export class PokemonDetailComponent implements OnInit {
   public pokemon: Pokemon;
 
-  private pokemonId: number;
+  public pokemonSpecie: PokemonSpecie;
+
+  public pokemonId: number;
 
   constructor(
     private route: ActivatedRoute,
-    private pokemonService: PokemonsService
-  ) {
-    this.route.params.subscribe((param) => (this.pokemonId = param['id']));
-  }
+    private pokemonService: PokemonsService,
+    private pokemonSpecieService: PokemonSpeciesService
+  ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((param) => (this.pokemonId = param['id']));
     this.findPokemon();
   }
 
   private findPokemon() {
     this.pokemonService.findPokemonById(this.pokemonId).subscribe({
       next: (pokemon) => {
-        var typeNames = pokemon.types.map((type) => {
+        var typeNames = pokemon?.types?.map((type) => {
           return this.capitalizeFirstLetter(type.type.name);
         });
-        pokemon.typesSecuence = typeNames.join(' | ');
+        pokemon.typesSecuence = typeNames?.join(' | ');
         this.pokemon = pokemon;
+        this.findSpecie(pokemon?.species?.url);
+      },
+    });
+  }
+
+  private findSpecie(specieUrl: string) {
+    this.pokemonSpecieService.findSpecieByUrl(specieUrl).subscribe({
+      next: (specie) => {
+        this.pokemonSpecie = specie;
       },
     });
   }
 
   private capitalizeFirstLetter(text: string) {
-    return text.charAt(0).toUpperCase() + text.slice(1);
+    return text?.charAt(0).toUpperCase() + text.slice(1);
   }
 }
