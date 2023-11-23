@@ -6,7 +6,12 @@
     <mat-card-content>
         <mat-chip-set cdkDropList cdkDropListOrientation="horizontal">
             @for (pokemon of habitat.pokemon_species; track pokemon) {
-            <mat-chip cdkDrag>{{pokemon.name | titlecase}}</mat-chip>
+            <mat-chip cdkDrag (click)="goToDetail(pokemon.url)">
+                <mat-chip-avatar>
+                    <mat-icon>open_in_new</mat-icon>
+                </mat-chip-avatar>
+                {{pokemon.name | titlecase}}
+            </mat-chip>
             } @empty {
             <span class="not-found">
                 No se han encontrado pokemons.
