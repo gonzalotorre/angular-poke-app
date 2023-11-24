@@ -15,7 +15,9 @@
                 <app-pokemon-evolutions
                     [pokemonEvolutionUrl]="pokemonSpecie.evolution_chain.url"></app-pokemon-evolutions>
             </mat-tab>
-            <mat-tab label="Games">Nuevo componenete para los juegos</mat-tab>
+            <mat-tab label="Games">
+                <app-pokemon-games [games]="pokemon.game_indices"></app-pokemon-games>
+            </mat-tab>
             <mat-tab label="Moves">Nuevo componenete para los movimientos</mat-tab>
             <mat-tab label="Abilities">Nuevo componenete para las habilidades</mat-tab>
             <mat-tab label="Encounters">Nuevo componenete para los Encounters</mat-tab>

@@ -1,3 +1,5 @@
+import { GameIndice } from './game-indices';
+
 export interface Pokemon {
   url: string;
   id: number;
@@ -15,6 +17,7 @@ export interface Pokemon {
   abilitiesSecuence: string;
   species: GenericResponse;
   level_evolution: number;
+  game_indices: GameIndice[];
 }
 
 export interface PokemonType {
