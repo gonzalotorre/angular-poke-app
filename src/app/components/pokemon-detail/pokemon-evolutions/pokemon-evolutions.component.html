@@ -15,7 +15,7 @@
                     Evolution on: {{pokemon.pokemon.level_evolution}}
                 </mat-chip>
                 <mat-chip color="primary" class="example-box" cdkDrag>
-                    {{pokemon.pokemon.typesSecuence}}
+                    Types: {{pokemon.pokemon.typesSecuence}}
                 </mat-chip>
                 <mat-chip color="primary" class="example-box" cdkDrag>
                     Weight: {{pokemon.pokemon.weight * 0.1 | number : '1.1-1'}}kg
@@ -25,11 +25,13 @@
                 </mat-chip>
             </mat-chip-set>
         </mat-card-content>
-        <mat-card-actions>
+        <!-- <mat-card-actions>
             <button mat-stroked-button color="primary" class="detail-button" (click)="goToDetail(pokemon.pokemon.id)">
                 <mat-icon aria-hidden="false" aria-label="Example visibility icon" fontIcon="visibility"></mat-icon>
             </button>
-        </mat-card-actions>
+        </mat-card-actions> -->
     </mat-card>
+    } @empty {
+    <h3 class="no-evolutions">This pokemon does not have evolutions.</h3>
     }
 </div>
