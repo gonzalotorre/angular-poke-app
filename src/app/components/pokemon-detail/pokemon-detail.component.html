@@ -1,6 +1,7 @@
+@defer (when pokemonSpecie) {
 <mat-card class="card">
     <mat-card-header>
-        <img mat-card-avatar class="avatar" src="{{pokemon.sprites.front_default}}" alt="Photo">
+        <img mat-card-avatar class="avatar" src="{{pokemon.sprites.front_default}}" alt="pokemon photo">
         <mat-card-title>{{pokemon.name | titlecase}}</mat-card-title>
         <mat-card-subtitle>Nº {{pokemon.id}}</mat-card-subtitle>
         <mat-card-subtitle>Pokemon types: {{pokemon.typesSecuence}}</mat-card-subtitle>
@@ -10,7 +11,10 @@
 
     <mat-card-content>
         <mat-tab-group fitInkBarToContent>
-            <mat-tab label="Evolutions">Nuevo componenete para evoluciones</mat-tab>
+            <mat-tab label="Evolutions">
+                <app-pokemon-evolutions
+                    [pokemonEvolutionUrl]="pokemonSpecie.evolution_chain.url"></app-pokemon-evolutions>
+            </mat-tab>
             <mat-tab label="Games">Nuevo componenete para los juegos</mat-tab>
             <mat-tab label="Moves">Nuevo componenete para los movimientos</mat-tab>
             <mat-tab label="Abilities">Nuevo componenete para las habilidades</mat-tab>
@@ -18,3 +22,4 @@
         </mat-tab-group>
     </mat-card-content>
 </mat-card>
+}

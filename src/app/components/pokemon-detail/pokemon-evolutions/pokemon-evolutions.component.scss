@@ -1,0 +1,31 @@
+mat-card {
+    margin: 10px;
+    border: green solid;
+    width: fit-content;
+}
+
+.evolutions-container {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.evolution-img {
+    height: 300px;
+    width: 300px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.detail-button {
+    width: 100%;
+}
+
+.no-evolutions {
+    margin: 15px;
+}

@@ -1,0 +1,37 @@
+<div class="evolutions-container">
+    @for (pokemon of evolutions; track $index) {
+    <mat-card>
+        <mat-card-header>
+            <img mat-card-avatar class="avatar" src="{{pokemon.pokemon.sprites.front_default}}" alt="pokemon photo">
+            <mat-card-title>{{pokemon.pokemon.name | titlecase}}</mat-card-title>
+            <mat-card-subtitle>Nº{{pokemon.pokemon.id}}</mat-card-subtitle>
+        </mat-card-header>
+        <div class="center">
+            <img mat-card-lg-image src="{{pokemon.pokemon.sprites.front_default}}" alt="Photo of a Shiba Inu">
+        </div>
+        <mat-card-content>
+            <mat-chip-set class="example-chip" cdkDropList cdkDropListOrientation="horizontal">
+                <mat-chip color="primary" class="example-box" cdkDrag>
+                    Evolution on: {{pokemon.pokemon.level_evolution}}
+                </mat-chip>
+                <mat-chip color="primary" class="example-box" cdkDrag>
+                    Types: {{pokemon.pokemon.typesSecuence}}
+                </mat-chip>
+                <mat-chip color="primary" class="example-box" cdkDrag>
+                    Weight: {{pokemon.pokemon.weight * 0.1 | number : '1.1-1'}}kg
+                </mat-chip>
+                <mat-chip color="primary" class="example-box" cdkDrag>
+                    Height: {{pokemon.pokemon.height * 0.1 | number : '1.1-1'}}m
+                </mat-chip>
+            </mat-chip-set>
+        </mat-card-content>
+        <!-- <mat-card-actions>
+            <button mat-stroked-button color="primary" class="detail-button" (click)="goToDetail(pokemon.pokemon.id)">
+                <mat-icon aria-hidden="false" aria-label="Example visibility icon" fontIcon="visibility"></mat-icon>
+            </button>
+        </mat-card-actions> -->
+    </mat-card>
+    } @empty {
+    <h3 class="no-evolutions">This pokemon does not have evolutions.</h3>
+    }
+</div>
