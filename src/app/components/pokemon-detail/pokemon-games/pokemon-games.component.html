@@ -1,0 +1,9 @@
+<div class="games-container">
+    <h2>This pokemon appears in the following games...</h2>
+
+    <mat-grid-list cols="4" rowHeight="100px">
+        @for (game of games; track $index) {
+        <mat-grid-tile [colspan]="1" [rowspan]="1">Pokemon {{game.version.name | titlecase}}</mat-grid-tile>
+        }
+    </mat-grid-list>
+</div>

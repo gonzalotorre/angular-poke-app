@@ -8,6 +8,7 @@ import { PokemonSpeciesService } from '../../services/pokemon-species.service';
 import { PokemonsService } from '../../services/pokemon.service';
 import { PokemonEvolutionsComponent } from './pokemon-evolutions/pokemon-evolutions.component';
 import { PokemonSpecie } from '../../models/pokemon-specie';
+import { PokemonGamesComponent } from './pokemon-games/pokemon-games.component';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -17,6 +18,7 @@ import { PokemonSpecie } from '../../models/pokemon-specie';
     MatCardModule,
     MatTabsModule,
     PokemonEvolutionsComponent,
+    PokemonGamesComponent,
   ],
   templateUrl: './pokemon-detail.component.html',
   styleUrl: './pokemon-detail.component.scss',
