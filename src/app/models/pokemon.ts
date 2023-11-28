@@ -18,6 +18,7 @@ export interface Pokemon {
   species: GenericResponse;
   level_evolution: number;
   game_indices: GameIndice[];
+  moves: PokemonMove[];
 }
 
 export interface PokemonType {
@@ -57,4 +58,30 @@ export interface PokemonHabitatDetail {
 export interface GenericResponse {
   name: string;
   url: string;
+}
+// Pokemon move
+export interface Move {
+  name: string;
+  url: string;
+}
+
+export interface MoveLearnMethod {
+  name: string;
+  url: string;
+}
+
+export interface VersionGroup {
+  name: string;
+  url: string;
+}
+
+export interface VersionGroupDetail {
+  level_learned_at: number;
+  move_learn_method: MoveLearnMethod;
+  version_group: VersionGroup;
+}
+
+export interface PokemonMove {
+  move: Move;
+  version_group_details: VersionGroupDetail[];
 }

@@ -1,0 +1,58 @@
+<div class="evolutions-container">
+    @for (move of pokemonMovesList; track $index) {
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>{{move.capitalized_name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+            <div>
+                <mat-grid-list class="mat-grid-list-item" cols="3" rowHeight="100px">
+                    <mat-grid-tile colspan="mat-grid-tile-item" [colspan]="1">
+                        <span matTooltip="Power points. The number of times this move can be used.">
+                            PP: {{move?.pp ?? 0}}
+                        </span>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="mat-grid-tile-item" [colspan]="1">
+                        <span
+                            matTooltip="The base power of this move with a value of 0 if it does not have a base power.">
+                            Power: {{move?.power ?? 0}}
+                        </span>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="mat-grid-tile-item" [colspan]="1">
+                        <span matTooltip="The elemental type of this move.">
+                            Type: {{move?.type?.name}}
+                        </span>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+                <mat-grid-list class="mat-grid-list-item" cols="4" rowHeight="100px">
+                    <!-- <mat-grid-tile colspan="mat-grid-tile-item" [colspan]="1">
+                        <a type="button" matTooltip="List of Pokemon that can learn the move."
+                            (click)="openPokemonList(move.learned_by_pokemon)">
+                            Pokemons
+                        </a>
+                    </mat-grid-tile> -->
+                    <mat-grid-tile colspan="mat-grid-tile-item" [colspan]="2">
+                        <span matTooltip="The percent value of how likely this move is to be successful.">
+                            Accurrancy: {{move?.accuracy ?? 0}}%
+                        </span>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="mat-grid-tile-item" [colspan]="2">
+                        <span matTooltip="The generation in which this move was introduced.">
+                            Generation: {{move?.generation?.name}}
+                        </span>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-footer>
+            <div class="move-description">
+                <span>{{move.effect_entries[0].short_effect}}</span>
+            </div>
+        </mat-card-footer>
+    </mat-card>
+    }
+</div>
