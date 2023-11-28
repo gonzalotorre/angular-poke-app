@@ -12,15 +12,31 @@
     <mat-card-content>
         <mat-tab-group fitInkBarToContent>
             <mat-tab label="Evolutions">
-                <app-pokemon-evolutions
-                    [pokemonEvolutionUrl]="pokemonSpecie.evolution_chain.url"></app-pokemon-evolutions>
+                <ng-template matTabContent> <!-- Lazy loading -->
+                    <app-pokemon-evolutions
+                        [pokemonEvolutionUrl]="pokemonSpecie.evolution_chain.url"></app-pokemon-evolutions>
+                </ng-template>
             </mat-tab>
             <mat-tab label="Games">
-                <app-pokemon-games [games]="pokemon.game_indices"></app-pokemon-games>
+                <ng-template matTabContent> <!-- Lazy loading -->
+                    <app-pokemon-games [games]="pokemon.game_indices"></app-pokemon-games>
+                </ng-template>
             </mat-tab>
-            <mat-tab label="Moves">Nuevo componenete para los movimientos</mat-tab>
-            <mat-tab label="Abilities">Nuevo componenete para las habilidades</mat-tab>
-            <mat-tab label="Encounters">Nuevo componenete para los Encounters</mat-tab>
+            <mat-tab label="Moves">
+                <ng-template matTabContent> <!-- Lazy loading -->
+                    <app-pokemon-moves [pokemonMoves]="pokemon.moves"></app-pokemon-moves>
+                </ng-template>
+            </mat-tab>
+            <mat-tab label="Abilities">
+                <ng-template matTabContent> <!-- Lazy loading -->
+                    Nuevo componenete para las habilidades
+                </ng-template>
+            </mat-tab>
+            <mat-tab label="Encounters">
+                <ng-template matTabContent> <!-- Lazy loading -->
+                    Nuevo componenete para los Encounters
+                </ng-template>
+            </mat-tab>
         </mat-tab-group>
     </mat-card-content>
 </mat-card>

@@ -9,16 +9,18 @@ import { PokemonsService } from '../../services/pokemon.service';
 import { PokemonEvolutionsComponent } from './pokemon-evolutions/pokemon-evolutions.component';
 import { PokemonSpecie } from '../../models/pokemon-specie';
 import { PokemonGamesComponent } from './pokemon-games/pokemon-games.component';
+import { PokemonMovesComponent } from './pokemon-moves/pokemon-moves.component';
 
 @Component({
   selector: 'app-pokemon-detail',
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule,
     MatTabsModule,
-    PokemonEvolutionsComponent,
+    MatCardModule,
     PokemonGamesComponent,
+    PokemonEvolutionsComponent,
+    PokemonMovesComponent,
   ],
   templateUrl: './pokemon-detail.component.html',
   styleUrl: './pokemon-detail.component.scss',
