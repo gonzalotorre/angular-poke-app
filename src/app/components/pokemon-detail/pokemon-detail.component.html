@@ -18,9 +18,7 @@
                 </ng-template>
             </mat-tab>
             <mat-tab label="Games">
-                <ng-template matTabContent> <!-- Lazy loading -->
-                    <app-pokemon-games [games]="pokemon.game_indices"></app-pokemon-games>
-                </ng-template>
+                <app-pokemon-games [games]="pokemon.game_indices"></app-pokemon-games>
             </mat-tab>
             <mat-tab label="Moves">
                 <ng-template matTabContent> <!-- Lazy loading -->
@@ -29,14 +27,14 @@
             </mat-tab>
             <mat-tab label="Abilities">
                 <ng-template matTabContent> <!-- Lazy loading -->
-                    Nuevo componenete para las habilidades
+                    <app-pokemon-abilities [pokemonAbilities]="pokemon.abilities"></app-pokemon-abilities>
                 </ng-template>
             </mat-tab>
-            <mat-tab label="Encounters">
-                <ng-template matTabContent> <!-- Lazy loading -->
-                    Nuevo componenete para los Encounters
+            <!-- <mat-tab label="Encounters">
+                <ng-template matTabContent>
+                    Componenete para los Encounters
                 </ng-template>
-            </mat-tab>
+            </mat-tab> -->
         </mat-tab-group>
     </mat-card-content>
 </mat-card>
