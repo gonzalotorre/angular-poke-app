@@ -55,7 +55,6 @@ export class PokemonMovesComponent implements OnInit {
           this.processMove(move);
         });
         this.pokemonMovesList = moves;
-        console.log(this.pokemonMovesList);
       },
     });
   }

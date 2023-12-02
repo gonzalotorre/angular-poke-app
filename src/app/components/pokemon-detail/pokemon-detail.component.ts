@@ -10,6 +10,7 @@ import { PokemonEvolutionsComponent } from './pokemon-evolutions/pokemon-evoluti
 import { PokemonSpecie } from '../../models/pokemon-specie';
 import { PokemonGamesComponent } from './pokemon-games/pokemon-games.component';
 import { PokemonMovesComponent } from './pokemon-moves/pokemon-moves.component';
+import { PokemonAbilitiesComponent } from './pokemon-abilities/pokemon-abilities.component';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -21,6 +22,7 @@ import { PokemonMovesComponent } from './pokemon-moves/pokemon-moves.component';
     PokemonGamesComponent,
     PokemonEvolutionsComponent,
     PokemonMovesComponent,
+    PokemonAbilitiesComponent,
   ],
   templateUrl: './pokemon-detail.component.html',
   styleUrl: './pokemon-detail.component.scss',

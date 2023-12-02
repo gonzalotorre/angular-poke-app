@@ -34,12 +34,7 @@ export interface Type {
 export interface PokemonAbilities {
   slot: number;
   is_hidden: boolean;
-  ability: Ability;
-}
-
-export interface Ability {
-  name: string;
-  url: Type;
+  ability: GenericResponse;
 }
 
 export interface PokemonHabitat {
