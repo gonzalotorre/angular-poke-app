@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>{{data.locationName}} areas</h2>
+<mat-dialog-content class="mat-typography">
+    @if (locationAreas) {
+    @for (area of locationAreas; track $index) {
+    <mat-card>
+        <mat-card-title>{{area.capitalized_name}}</mat-card-title>
+        <mat-card-subtitle>Pokemon encounters</mat-card-subtitle>
+        <mat-card-content>
+            <mat-accordion>
+                @for (encounter of area.pokemon_encounters; track $index) {
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{encounter.pokemon.name | titlecase}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-panel-description>Encounter details in the different games.</mat-panel-description>
+                    <mat-tab-group>
+                        @for (version of encounter.version_details; track $index) {
+                        <mat-tab label="{{version.version.name | titlecase}}">
+                            <mat-list>
+                                @for (encounterDetail of version.encounter_details; track $index; let last = $last) {
+                                <mat-list-item>
+                                    <mat-chip-listbox aria-label="Encounter details">
+                                        <mat-chip>
+                                            Encounter Method: {{encounterDetail.method.name}}
+                                        </mat-chip>
+                                        <mat-chip>
+                                            Encounter max level: {{encounterDetail.max_level}}
+                                        </mat-chip>
+                                        <mat-chip>
+                                            Encounter min level: {{encounterDetail.min_level}}
+                                        </mat-chip>
+                                        <mat-chip>
+                                            Encounter chance: {{encounterDetail.chance}}%
+                                        </mat-chip>
+                                    </mat-chip-listbox>
+                                </mat-list-item>
+                                @if (!last) {
+                                <mat-divider></mat-divider>
+                                }
+                                }
+                            </mat-list>
+                        </mat-tab>
+                        }
+                    </mat-tab-group>
+                </mat-expansion-panel>
+                }
+            </mat-accordion>
+        </mat-card-content>
+    </mat-card>
+    }
+    } @else {
+    <h1>This location has not areas.</h1>
+    }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

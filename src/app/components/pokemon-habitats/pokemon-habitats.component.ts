@@ -30,7 +30,6 @@ export class PokemonHabitatsComponent {
     // we can get it this way although it would not be the optimal way to do it.
     var partes = url.split('/');
     var idPokemon = partes[partes.length - 2];
-    console.log(idPokemon);
     this.router.navigateByUrl(`detail/${idPokemon}`);
   }
 
