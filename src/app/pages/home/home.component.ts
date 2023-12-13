@@ -1,23 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { PokemonFilterComponent } from '../../components/pokemon-filter/pokemon-filter.component';
 import { PokemonListingComponent } from '../../components/pokemon-listing/pokemon-listing.component';
 import { Pokemon } from '../../models/pokemon';
 import { PokemonsService } from '../../services/pokemon.service';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule,
-    PokemonFilterComponent,
     PokemonListingComponent,
     CommonModule,
     HomeComponent,
@@ -47,7 +45,7 @@ export class HomeComponent {
   }
 
   public sendNewRequest(length: number): void {
-    this.getPokemons(length, length + 50);
+    this.getPokemons(length, length + 10);
   }
 
   private getPokemons(offset: number, length: number): void {

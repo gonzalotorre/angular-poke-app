@@ -34,9 +34,11 @@ import { PokemonLocationsDialogComponent } from './pokemon-locations-dialog/poke
 })
 export class PokemonLocationsComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'region', 'areas'];
+
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
   @ViewChild(MatSort) sort: MatSort;
 
   private locationsList: PokemonsLocation[] = [];
@@ -103,7 +105,6 @@ export class PokemonLocationsComponent implements OnInit, AfterViewInit {
 
           forkJoin(locationsObservables).subscribe((locationsArray) => {
             const updatedLocationsList = [...this.locationsList];
-            console.log(locationsArray);
 
             locationsArray.forEach((location) => {
               this.processLocation(location);
