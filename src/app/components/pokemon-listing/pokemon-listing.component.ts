@@ -20,6 +20,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Pokemon } from '../../models/pokemon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-pokemon-listing',
@@ -34,6 +36,8 @@ import { Pokemon } from '../../models/pokemon';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './pokemon-listing.component.html',
   styleUrl: './pokemon-listing.component.scss',
@@ -85,7 +89,16 @@ export class PokemonListingComponent
     }
   }
 
-  isLastPage(event: any): boolean {
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  private isLastPage(event: any): boolean {
     const totalPages = Math.ceil(event.length / event.pageSize);
     // Verifica si la página actual es la última página
     return event.pageIndex === totalPages - 1;

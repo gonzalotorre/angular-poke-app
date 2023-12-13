@@ -7,6 +7,7 @@ import { PokemonHabitatsService } from './services/pokemon-habitats.service';
 import { PokemonEvolutionsService } from './services/pokemon-evolutions.service';
 import { PokemonSpeciesService } from './services/pokemon-species.service';
 import { PokemonAbilitiesService } from './services/pokemon-abilities.service';
+import { PokedexServiceService } from './services/pokedex-service.service';
 
 const serverConfig: ApplicationConfig = {
   providers: [
@@ -14,9 +15,10 @@ const serverConfig: ApplicationConfig = {
     PokemonsService,
     PokemonTypesService,
     PokemonSpeciesService,
+    PokedexServiceService,
     PokemonHabitatsService,
-    PokemonEvolutionsService,
     PokemonAbilitiesService,
+    PokemonEvolutionsService,
   ],
 };
 

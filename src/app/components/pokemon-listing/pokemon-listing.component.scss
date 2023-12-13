@@ -1,5 +1,18 @@
+mat-card {
+  padding: 20px;
+}
+
+mat-icon {
+  margin: 0 !important;
+}
+
 .list-container {
   padding: 10px;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
 }
 
 .example-loading-shade {
@@ -17,10 +30,6 @@
 
 .button-icon {
   justify-content: center;
-}
-
-mat-icon {
-  margin: 0 !important;
 }
 
 .not-found-image {
