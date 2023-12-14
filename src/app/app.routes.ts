@@ -8,24 +8,41 @@ import { PokemonPokedexComponent } from './components/pokemon-pokedex/pokemon-po
 export const routes: Routes = [
   {
     path: 'pokemons',
-    component: HomeComponent,
+    loadComponent: () =>
+      import('./pages/home/home.component').then((mod) => mod.HomeComponent),
   },
   {
     path: 'locations',
-    component: PokemonLocationsComponent,
+    loadComponent: () =>
+      import('./components/pokemon-locations/pokemon-locations.component').then(
+        (mod) => mod.PokemonLocationsComponent
+      ),
   },
   {
     path: 'habitats',
-    component: PokemonHabitatsComponent,
+    loadComponent: () =>
+      import('./components/pokemon-habitats/pokemon-habitats.component').then(
+        (mod) => mod.PokemonHabitatsComponent
+      ),
   },
   {
     path: 'pokedex',
-    component: PokemonPokedexComponent,
+    loadComponent: () =>
+      import('./components/pokemon-pokedex/pokemon-pokedex.component').then(
+        (mod) => mod.PokemonPokedexComponent
+      ),
   },
   {
     path: 'detail/:id',
-    component: PokemonDetailComponent,
+    loadComponent: () =>
+      import('./components/pokemon-detail/pokemon-detail.component').then(
+        (mod) => mod.PokemonDetailComponent
+      ),
   },
   { path: '', redirectTo: '/pokemons', pathMatch: 'full' },
-  { path: '**', component: HomeComponent },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./pages/home/home.component').then((mod) => mod.HomeComponent),
+  },
 ];
